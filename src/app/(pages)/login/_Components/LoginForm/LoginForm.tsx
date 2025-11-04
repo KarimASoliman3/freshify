@@ -33,7 +33,7 @@ const formSchema = z.object({
 
 export function LoginForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  let searchParams = useSearchParams();
+  const  searchParams = useSearchParams();
   const callbackURL = searchParams.get('callback-url');
   console.log(searchParams);
   
@@ -48,7 +48,7 @@ export function LoginForm() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(false);
     const response = await signIn('credentials' , {
-        callbackUrl : callbackURL ?? '/products',
+        callbackUrl : callbackURL ?? '/',
         redirect : true,
         email : values.email,
         password : values.password,
