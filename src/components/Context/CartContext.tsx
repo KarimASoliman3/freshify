@@ -19,7 +19,7 @@ export const CartContext = createContext<{
 export function CartContextProvider({ children }: { children: ReactNode }) {
   const [cartData, setCartData] = useState<CartResponse | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [userId, setUserId] = useState<string>("");
+  // const [userId, setUserId] = useState<string>("");
 
   async function getCart() {
     if (session.status == 'authenticated') {

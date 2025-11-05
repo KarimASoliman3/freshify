@@ -18,7 +18,8 @@ import { Loader2 } from "lucide-react";
 import { CartContext } from "../Context/CartContext";
 
 export default function Checkout({ cartId }: { cartId: string }) {
-  const { cartData, getCart, setCartData } = useContext(CartContext);
+  // const { cartData, getCart, setCartData } = useContext(CartContext);
+  const {setCartData } = useContext(CartContext);
   const [isLoadingVisa, setIsLoadingVisa] = useState<boolean>(false)
   const [isLoadingCash, setIsLoadingCash] = useState<boolean>(false)
 
