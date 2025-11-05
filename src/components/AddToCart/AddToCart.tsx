@@ -34,8 +34,12 @@ export default function AddToCart({productId} : {productId:string}) {
       if (!res.ok) throw new Error(data?.message || 'Failed to add to wishlist');
       setIsWished(true);
       toast.success(data?.message || 'Added to wishlist');
-    } catch (e:any) {
-      toast.error(e?.message || 'Failed to add to wishlist');
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        toast.error(error.message || 'Failed to add to wishlist');
+      } else {
+        toast.error('Failed to add to wishlist');
+      }
     } finally {
       setWishLoading(false);
     }
@@ -53,8 +57,12 @@ export default function AddToCart({productId} : {productId:string}) {
       if (!res.ok) throw new Error(data?.message || 'Failed to remove from wishlist');
       setIsWished(false);
       toast.success(data?.message || 'Removed from wishlist');
-    } catch (e:any) {
-      toast.error(e?.message || 'Failed to remove from wishlist');
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        toast.error(error.message || 'Failed to remove from wishlist');
+      } else {
+        toast.error('Failed to remove from wishlist');
+      }
     } finally {
       setWishLoading(false);
     }
