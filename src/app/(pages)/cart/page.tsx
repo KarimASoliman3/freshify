@@ -18,7 +18,7 @@ export default function Cart() {
   const [updateCartId, setUpdateCartId] = useState<string | null>(null);
   const [isClearing, setIsClearing] = useState<boolean>(false);
 
-  let { cartData, isLoading, getCart, setCartData } = useContext(CartContext);
+  const { cartData, isLoading, getCart, setCartData } = useContext(CartContext);
   const products = cartData?.data?.products ?? [];
 
   if (typeof products[0]?.product == "string" || cartData == null) {

@@ -18,14 +18,14 @@ import { Loader2 } from "lucide-react";
 import { CartContext } from "../Context/CartContext";
 
 export default function Checkout({ cartId }: { cartId: string }) {
-  let { cartData, getCart, setCartData } = useContext(CartContext);
+  const { cartData, getCart, setCartData } = useContext(CartContext);
   const [isLoadingVisa, setIsLoadingVisa] = useState<boolean>(false)
   const [isLoadingCash, setIsLoadingCash] = useState<boolean>(false)
 
 
-  let detailsInput = useRef<HTMLInputElement | null>(null);
-  let phoneInput = useRef<HTMLInputElement | null>(null);
-  let cityInput = useRef<HTMLInputElement | null>(null);
+  const detailsInput = useRef<HTMLInputElement | null>(null);
+  const phoneInput = useRef<HTMLInputElement | null>(null);
+  const cityInput = useRef<HTMLInputElement | null>(null);
 
   // online payment visa
   async function checkoutSessionVisa() {

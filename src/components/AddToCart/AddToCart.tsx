@@ -16,7 +16,7 @@ export default function AddToCart({productId} : {productId:string}) {
   const {getCart , setCartData} = useContext(CartContext);
 
   const session = useSession();
-  let router = useRouter();
+  const router = useRouter();
   
   async function addToWishlist() {
     if (session.status !== 'authenticated') {

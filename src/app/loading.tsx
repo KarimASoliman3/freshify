@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 import logo from '../../public/assets/FreshifyBlack-removebg-preview.png'
-import { Loader, Loader2 } from 'lucide-react'
+import { Loader } from 'lucide-react'
 
 export default function Loading() {
   return <>

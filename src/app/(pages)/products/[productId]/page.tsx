@@ -3,10 +3,8 @@ import React from "react";
 import { Params } from "next/dist/server/request/params";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -16,7 +14,7 @@ import AddToCart from "@/components/AddToCart/AddToCart";
 
 export default async function ProductDetails({ params }: { params: Params }) {
   //productId is a name of the dynamic segment in the file name [productId]
-  let { productId } = await params;
+  const { productId } = await params;
   // productId is a name of the dynamic segment in the file name [productId]
   const response = await fetch(
     "https://ecommerce.routemisr.com/api/v1/products/" + productId

@@ -76,7 +76,7 @@ export default function Navbar() {
                     <NavigationMenuLink asChild>
                       <Link 
                         href={link.href}
-                        className="px-3 py-2 text-sm xl:text-base font-medium hover:text-gray-700 transition-colors"
+                        className="px-3 py-2 text-sm xl:text-base font-medium hover:text-white transition-colors"
                       >
                         {link.label}
                       </Link>

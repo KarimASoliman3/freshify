@@ -12,7 +12,7 @@ export const authOption : AuthOptions = {
         email: {},
         password: {},
       },
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         const response = await fetch("https://ecommerce.routemisr.com/api/v1/auth/signin", {
           method: "POST",
           body: JSON.stringify({
