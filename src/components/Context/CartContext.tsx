@@ -22,15 +22,24 @@ export function CartContextProvider({ children }: { children: ReactNode }) {
   // const [userId, setUserId] = useState<string>("");
 
   async function getCart() {
-    if (session.status == 'authenticated') {
-      const response = await fetch("http://localhost:3000/api/get-cart");
-      const data: CartResponse = await response.json();
-      console.log(data);
-      setCartData(data);
-      if (data?.data?.cartOwner) {
-        localStorage.setItem("userId", data?.data.cartOwner);
+    if (session.status === 'authenticated') {
+      try {
+        const response = await fetch("http://localhost:3000/api/get-cart");
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data: CartResponse = await response.json();
+        console.log(data);
+        setCartData(data);
+        if (data?.data?.cartOwner) {
+          localStorage.setItem("userId", data?.data.cartOwner);
+        }
+      } catch (error) {
+        console.error('Failed to fetch cart data:', error);
+        setCartData(null);
+      } finally {
+        setIsLoading(false);
       }
-      setIsLoading(false);
     } else {
       setIsLoading(false);
     }
@@ -39,6 +48,7 @@ export function CartContextProvider({ children }: { children: ReactNode }) {
   const session = useSession();
   useEffect(() => {
     getCart();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session.status]);
 
   return (
