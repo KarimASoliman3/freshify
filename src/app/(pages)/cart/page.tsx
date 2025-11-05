@@ -106,7 +106,7 @@ export default function Cart() {
     <>
       {isLoading || typeof products[0]?.product == "string" ? (
         <Loading />
-      ) : cartData?.numOfCartItems! > 0 ? (
+      ) : (cartData?.numOfCartItems ?? 0) > 0 ? (
         <div className="container mx-auto px-4 py-6">
           <h1 className="text-3xl font-bold tracking-tight">Shopping Cart</h1>
           {/* <p className="text-muted-foreground mt-1"> {} item in your cart</p> */}
@@ -321,7 +321,7 @@ export default function Cart() {
                     </span>
                     <span>
                       {" "}
-                      {formatCurrency(cartData?.data.totalCartPrice!)}
+                      {formatCurrency(cartData?.data?.totalCartPrice ?? 0)}
                     </span>
                   </div>
                   <div className="flex justify-between text-sm">
@@ -333,12 +333,13 @@ export default function Cart() {
                   <div className="flex justify-between text-sm font-medium border-t pt-3 border-b pb-3">
                     <span>Total</span>
                     <span>
-                      {formatCurrency(cartData?.data.totalCartPrice!)}
+                      {formatCurrency(cartData?.data?.totalCartPrice ?? 0)}
                     </span>
                   </div>
                 </div>
                 {/* check button here */}
-                <Checkout cartId={cartData?.cartId!} />
+                {cartData?.cartId && <Checkout cartId={cartData.cartId} />}
+
                 <Link
                   href={"/products"}
                   className="w-full flex justify-center mt-3"
