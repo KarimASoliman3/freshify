@@ -1,8 +1,133 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 Freshify
 
-## Getting Started
+> A modern, full-featured e-commerce web application built with **Next.js 14** and **Clean Architecture** principles.
 
-First, run the development server:
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-freshify--beta.vercel.app-brightgreen?style=flat-square&logo=vercel)](https://freshify-beta.vercel.app)
+[![Next.js](https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.x-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
+
+---
+
+## 📖 Overview
+
+**Freshify** is a fully responsive e-commerce platform that allows users to browse products across multiple categories and brands, manage a wishlist, add items to a cart, and track their orders — all with a smooth and modern shopping experience.
+
+The project is built following **Clean Architecture** to ensure a clear separation of concerns, high testability, and easy scalability.
+
+---
+
+## 🌐 Live Demo
+
+🔗 [https://freshify-beta.vercel.app](https://freshify-beta.vercel.app)
+
+---
+
+## ✨ Features
+
+- 🏠 **Home Page** — Hero banner, featured categories, brands, and products
+- 🛍️ **Products** — Browse all products with filtering support
+- 🗂️ **Categories** — Shop by category (Men's Fashion, Women's Fashion, Supermarket, Baby & Toys, Home, Music)
+- 🏷️ **Brands** — Browse products by brand (Canon, Dell, Sony, Lenovo, Nokia, etc.)
+- ❤️ **Wishlist** — Save favourite products for later
+- 🛒 **Cart** — Add/remove products and manage quantities
+- 📦 **All Orders** — View order history
+- 🔐 **Authentication** — User login and registration
+- 📱 **Fully Responsive** — Mobile-first design
+
+---
+
+## 🏗️ Architecture
+
+This project follows **Clean Architecture**, separating the codebase into distinct, independent layers:
+
+```
+src/
+├── app/                      # Next.js App Router (Presentation Layer)
+│   ├── (auth)/               # Authentication routes (login, register)
+│   ├── products/             # Product listing & detail pages
+│   ├── categories/           # Category pages
+│   ├── brands/               # Brand pages
+│   ├── wishlist/             # Wishlist page
+│   ├── allorders/            # Orders page
+│   └── layout.tsx            # Root layout
+│
+├── components/               # Reusable UI Components
+│   ├── ui/                   # Shadcn/UI primitives
+│   ├── Navbar/               # Navigation bar
+│   ├── Footer/               # Footer
+│   ├── ProductCard/          # Product card widget
+│   └── ...
+│
+├── domain/                   # Domain Layer (Business Entities & Interfaces)
+│   ├── entities/             # Core data models (Product, Category, Brand, etc.)
+│   └── repositories/         # Repository interfaces / contracts
+│
+├── data/                     # Data Layer (API calls & repository implementations)
+│   ├── repositories/         # Concrete repository implementations
+│   └── datasources/          # Remote data sources (API clients)
+│
+├── usecases/                 # Application Layer (Business Logic)
+│   ├── products/             # Product-related use cases
+│   ├── cart/                 # Cart use cases
+│   ├── wishlist/             # Wishlist use cases
+│   └── auth/                 # Auth use cases
+│
+├── context/                  # React Context (Global State)
+│   ├── CartContext.tsx
+│   └── AuthContext.tsx
+│
+└── lib/                      # Utilities & helpers
+    └── utils.ts
+```
+
+### Layer Responsibilities
+
+| Layer | Responsibility |
+|---|---|
+| **Presentation** (`app/`, `components/`) | UI rendering, routing, user interaction |
+| **Application** (`usecases/`) | Business rules, orchestration of domain logic |
+| **Domain** (`domain/`) | Core entities and repository contracts |
+| **Data** (`data/`) | API calls, data fetching, external services |
+
+> **Dependency Rule:** Each layer only depends on the layer directly below it. The domain layer has zero external dependencies.
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| [Next.js 14](https://nextjs.org/) | React framework with App Router & SSR |
+| [TypeScript](https://www.typescriptlang.org/) | Static type safety |
+| [Tailwind CSS](https://tailwindcss.com/) | Utility-first styling |
+| [Shadcn/UI](https://ui.shadcn.com/) | Accessible component library |
+| [ESLint](https://eslint.org/) | Code linting |
+| [Vercel](https://vercel.com/) | Deployment & hosting |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- **Node.js** >= 18.x
+- **npm**, **yarn**, **pnpm**, or **bun**
+
+### Installation
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/KarimASoliman3/freshify.git
+
+# 2. Navigate into the project
+cd freshify
+
+# 3. Install dependencies
+npm install
+```
+
+### Running the Development Server
 
 ```bash
 npm run dev
@@ -14,23 +139,89 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Building for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+### Linting
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run lint
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📁 Project Structure (Top Level)
 
-## Deploy on Vercel
+```
+freshify/
+├── public/             # Static assets (images, icons)
+├── src/                # Application source code
+├── components.json     # Shadcn/UI component config
+├── next.config.ts      # Next.js configuration
+├── tailwind.config.ts  # Tailwind CSS configuration
+├── tsconfig.json       # TypeScript configuration
+├── eslint.config.mjs   # ESLint configuration
+└── package.json        # Project dependencies & scripts
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🌍 Deployment
+
+This project is deployed on **Vercel**. Every push to the `master` branch triggers an automatic deployment.
+
+To deploy your own instance:
+
+1. Fork the repository
+2. Import the project into [Vercel](https://vercel.com/new)
+3. Set any required environment variables
+4. Click **Deploy**
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/KarimASoliman3/freshify)
+
+---
+
+## 📜 Available Scripts
+
+| Script | Description |
+|---|---|
+| `npm run dev` | Start development server on port 3000 |
+| `npm run build` | Build the application for production |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint to check code quality |
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+1. Fork the repository
+2. Create a new branch: `git checkout -b feature/your-feature-name`
+3. Commit your changes: `git commit -m 'feat: add some feature'`
+4. Push to the branch: `git push origin feature/your-feature-name`
+5. Open a Pull Request
+
+---
+
+## 👤 Author
+
+**Karim A. Soliman**
+
+- GitHub: [@KarimASoliman3](https://github.com/KarimASoliman3)
+
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+<p align="center">Made with ❤️ using Next.js & Clean Architecture</p>
